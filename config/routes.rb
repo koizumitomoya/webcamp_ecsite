@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
-  namespace :admin do
-   
-  end
+  
+  resources :end_users, only: [:edit, :update, :destroy ] 
   devise_for :end_users, :controllers => {
     :registrations => 'end_users/registrations',
     :sessions => 'end_users/sessions'   
@@ -15,6 +14,7 @@ Rails.application.routes.draw do
   get 'end_users/:id', :to => 'end_users#show', as: :end_users_mypage
  namespace :admin do 
    get "items", :to => "items#index"
+   get "end_users", :to =>"end_users#index"
  end
  devise_for :admins, path: :admin, :controllers => {
    

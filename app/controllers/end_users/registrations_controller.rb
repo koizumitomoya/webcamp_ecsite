@@ -3,7 +3,7 @@
 class EndUsers::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
-
+  before_action :configure_permitted_parameters, if: :devise_controller?
   # GET /resource/sign_up
   # def new
   #   super
@@ -68,4 +68,11 @@ end
 def after_update_path_for(resource)
   end_users_mypage_path(@end_user)
 end
+
+
+protected
+
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.permit(:sign_up, keys: [ :name, :surname, :name_kana, :surname_kana])
+  end
 end

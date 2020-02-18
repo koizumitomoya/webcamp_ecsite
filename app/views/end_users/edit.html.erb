@@ -1,0 +1,8 @@
+<%= form_for(@end_user) do |f| %>
+　　<p>苗字</p><%= f.text_field :surname %>
+    <p>名前</p><%= f.text_field :name %>
+    <p>苗字</p><%= f.text_field :surname_kana %>
+    <p>名前</p><%= f.text_field :name_kana %>
+    <p>email</p><%= f.text_field :email %>
+    <%= f.submit "update", class:"btn btn-lg  btn-base-1 mt-20" %>
+<% end %>
