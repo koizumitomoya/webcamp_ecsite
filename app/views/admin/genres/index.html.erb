@@ -1,0 +1,22 @@
+<h1>管理者　ジャンル　一覧　登録</h1>
+<%= form_for(@genre, url: admin_genres_path ) do |f| %>
+	 	<div class="field row">
+	 	 <label>Title</label>
+	 	 <%= f.text_field :name, class: "col-xs-12" %>
+	 	</div>
+	 	<div class="field row">
+	 	 <label>有効</label>
+	 	<%= f.check_box :effectiveness, {} ,"true", "false"  %>
+	 	</div>
+
+	 	<div class="actions row">
+	 		<%= f.submit 'create book', class: "col-xs-12 btn btn-primary"  %>
+	 	</div>
+<% end %>       
+
+<div>
+ <% @genres.each do |genre| %>
+ 　　<%= genre.name %>
+    <%= genre.effectiveness %>
+ <% end %>
+</div>

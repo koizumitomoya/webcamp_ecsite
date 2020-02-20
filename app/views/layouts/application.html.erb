@@ -21,13 +21,17 @@
       <li>
         <%= link_to " log out", sign_out_path %>
       </li>
+       <li> 
+        <%= link_to " 商品一覧", items_path  %>  
+      </li>
     <% elsif admin_signed_in? %>  
        <li>
         <%= link_to " 受注一覧" %>
       </li>
       <li> 
-        <%= link_to "商品登録"  %>  
+        <%= link_to "商品登録", admin_items_new_path  %>  
       </li>
+
       <li>
         <%= link_to " log out", admin_sign_out_path %>
       </li>
@@ -38,6 +42,9 @@
       </li>
       <li class="">
         <%= link_to "  Log in", new_end_user_session_path, class: "glyphicon glyphicon-check" %>
+      </li>
+       <li> 
+        <%= link_to " 商品一覧", items_path  %>  
       </li>
     <% end %>
 
