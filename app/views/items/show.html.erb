@@ -1,2 +1,15 @@
 <h1>Items#show</h1>
-<p>Find me in app/views/items/show.html.erb</p>
+<p>Find me in app/vie
+<%= form_for CartItem.new, url: cart_items_path(item_id: @item) do |f| %>
+	 <%= @item.name %>
+         <label>dd</label>
+	 	<%= f.number_field :amount, class: "col-xs-12" %>
+	 	</div>
+       
+         
+
+	 	<div class="actions row">
+	 		<%= f.submit 'add', class: "col-xs-12 btn btn-primary"  %>
+	 	</div>
+<% end %>         
+

@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>WebcampEcsite</title>
+   <title>WebcampEcsite</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <meta charset="utf-8"/>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
@@ -24,6 +24,10 @@
        <li> 
         <%= link_to " 商品一覧", items_path  %>  
       </li>
+       <li> 
+        <%= link_to " カート内商品一覧", cart_items_path  %>  
+      </li>
+
     <% elsif admin_signed_in? %>  
        <li>
         <%= link_to " 受注一覧" %>

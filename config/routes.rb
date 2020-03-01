@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
   
+ 
   resources :items, only: [:index, :show]
   resources :end_users, only: [:edit, :update, :destroy ] 
-  devise_for :end_users, :controllers => {
+  resources :cart_items, only: [:show, :update, :create, :destroy, :index]
+   devise_for :end_users, :controllers => {
     :registrations => 'end_users/registrations',
     :sessions => 'end_users/sessions'   
   } 
