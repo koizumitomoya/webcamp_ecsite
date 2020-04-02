@@ -10,8 +10,11 @@
   </head>
 
   <body>
-   <header>
+   <header class = "navbar navbar-top navbar-inverse">
+    <div class = "container">
     <% if end_user_signed_in? %>
+    <nav>
+     <ul class="nav navbar-nav navbar-right">
      <li>
         <%= link_to " mypage", end_users_mypage_path(current_end_user.id) %>
       </li>
@@ -27,20 +30,28 @@
        <li> 
         <%= link_to " カート内商品一覧", cart_items_path  %>  
       </li>
+     </ul>
+     </nav> 
 
     <% elsif admin_signed_in? %>  
+    <nav>
+    <ul class="nav navbar-nav navbar-right">
        <li>
-        <%= link_to " 受注一覧" %>
+        <%= link_to " 受注一覧", admin_orders_path %>
       </li>
       <li> 
-        <%= link_to "商品登録", admin_items_new_path  %>  
+        <%= link_to "商品登録", new_admin_item_path  %>  
       </li>
 
       <li>
         <%= link_to " log out", admin_sign_out_path %>
       </li>
+    <nav>
+    <ul>  
    
     <% else %>
+    <nav>
+    <ul class="nav navbar-nav navbar-right">
       <li class="">
         <%= link_to "  Sign up", new_end_user_registration_path, class: "glyphicon glyphicon-edit" %>
       </li>
@@ -50,8 +61,13 @@
        <li> 
         <%= link_to " 商品一覧", items_path  %>  
       </li>
+      <ul>
+      <nav>
     <% end %>
-
+    
+    </ul>
+    </nav>
+     <div>
    </header>
     <%= yield %>
   </body>

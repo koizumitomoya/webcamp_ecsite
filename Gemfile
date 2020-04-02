@@ -63,3 +63,4 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'devise'
 gem 'bootstrap', '~> 4.1.1'
 gem 'paranoia'
+gem 'rails-i18n', '~> 5.1' 

@@ -3,6 +3,7 @@
 
          <p>ユーザー名</P><%= cart.end_user.name %><br>
          <p>商品名</p><%= cart.item.name %><br>
+         <p>値段</p><%= cart.item.price %><br>
          <p>商品数</p>
          
 
@@ -19,5 +20,10 @@
 	 	</div>
          <%= link_to "destroy", cart_item_path(@cart=cart), method: :delete %>
          
+         <p>小計</p><%= cart.item.price*cart.amount %>   
 <% end %>   
-       <% end %>    
+        
+       <% end %>
+         
+       <%= link_to "購入画面", new_order_path %> 
+       <%= link_to "買い物を続ける", items_path %>

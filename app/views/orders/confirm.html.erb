@@ -1,0 +1,30 @@
+<% @carts.each do |cart| %>
+
+         <p>ユーザー名</P><%= cart.end_user.name %><br>
+         <p>商品名</p><%= cart.item.name %><br>
+         <p>値段</p><%= cart.item.price %><br>
+         <p>商品数</p><%= cart.amount %><br>
+         <p>小計</p><%= up=cart.item.price*cart.amount %>  
+         
+         <% @array << up %>
+
+
+<% end %>
+  <p>合計</p>
+   <%= @array.sum %>  
+     <%= @order.address.name %>
+  <%= @order.address.address %>
+    
+<%= form_for @order do |f| %>
+<%= f.hidden_field :address_id, value: @order.address_id %>
+<%= f.hidden_field :total, value: @array.sum  %>
+
+
+  <div class="actions">
+    <%= link_to 'back', new_order_path %>
+  </div>
+  <div class="actions">
+    <%= f.submit '投稿する' %>
+  </div>
+<% end %>
+

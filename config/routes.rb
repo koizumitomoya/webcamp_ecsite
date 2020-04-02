@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
-  
- 
+  resources :addresses
+  resources :orders, only: [:index, :show, :create, :new] do 
+    collection do
+      post :confirm
+      get :finsh
+    end
+  end    
   resources :items, only: [:index, :show]
   resources :end_users, only: [:edit, :update, :destroy ] 
   resources :cart_items, only: [:show, :update, :create, :destroy, :index]
@@ -15,9 +20,11 @@ Rails.application.routes.draw do
   end
 
   get 'end_users/:id', :to => 'end_users#show', as: :end_users_mypage
- namespace :admin do 
+ namespace :admin do
+   resources :order_details, only:[:update]
    resources :items, only: [:index, :new, :create]
    resources :genres, only: [:index, :create, :edit, :update]
+   resources :orders, only: [:index, :show, :update]
    get "end_users", :to =>"end_users#index"
  end
  devise_for :admins, path: :admin, :controllers => {
