@@ -1,5 +1,5 @@
 class CartItemsController < ApplicationController
-
+  before_action :authenticate_end_user!
 
     def index
       @user = current_end_user
@@ -36,6 +36,14 @@ class CartItemsController < ApplicationController
       cart.destroy
       redirect_to cart_items_path
     end    
+    def destruction
+      @carts = current_end_user.cart_items
+      @carts.each do |cart|
+        cart.destroy
+      end  
+      redirect_to cart_items_path
+
+    end  
       
 
 

@@ -1,0 +1,50 @@
+<h1>購入履歴</h1>
+ <table class="table table-hover tablr-inverse">
+	 	    <% current_end_user.orders.each do |order| %>
+	
+	 			<tr>
+	 				<th>注文日</th>
+          <td><%=order.created_at %></td>
+        </tr>  
+        <tr>
+	 				<th>配送先</th>
+          <td><%=order.address.address %></td>
+        </tr>   
+        <tr>
+	 				<th>支払方法</th>
+          <td><%=order.method %></td> 
+        </tr>   
+        <tr>
+	 				<th>注文ステータス</th>
+           <td><%=order.status %></td>
+           <% order.order_details.each do |detail| %>
+	 	</tr>
+          
+         <tr>
+          <th>商品名</th>
+          <td><%=detail.item.name %></td>
+         </tr> 
+         <tr>
+          <th>単価</th>
+          <td><%=detail.item.price %>円</td>
+         </tr> 
+         <tr>
+          <th>個数</th>
+          <td><%=detail.amount %>個</td>
+         </tr> 
+          <tr>
+          <th>小計</th>
+          <td><%=detail.price %>円</td>
+         </tr> 
+         <tr>
+          <th>合計</th>
+          <td><%=order.total %>円</td>
+         </tr>
+          <tr>
+          <th><%=link_to "戻る", end_user_path(current_end_user)%></th>
+          <td></td>
+         </tr>
+
+         <% end %>
+         <% end %>
+         </table>

@@ -1,4 +1,5 @@
 class EndUsersController < ApplicationController
+  before_action :authenticate_end_user!
      def show
         @end_user = EndUser.find(params[:id])
      end
@@ -22,7 +23,7 @@ class EndUsersController < ApplicationController
     private
 
     def end_user_params
-        params.require(:end_user).permit(:name, :surname, :name_kana, :surname_kana,:email)
+        params.require(:end_user).permit(:name, :surname, :name_kana, :surname_kana,:email,:postcode, :address, :phone_number)
     end
 
 end

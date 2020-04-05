@@ -73,6 +73,6 @@ end
 protected
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [ :name, :surname, :name_kana, :surname_kana])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [ :name, :surname, :name_kana, :surname_kana,:postcode, :address, :phone_number])
   end
 end

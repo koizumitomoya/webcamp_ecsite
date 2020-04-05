@@ -6,9 +6,13 @@ Rails.application.routes.draw do
       get :finsh
     end
   end    
-  resources :items, only: [:index, :show]
+  resources :items, only: [:index, :show] do
+    get :autocomplete_item_name, on: :collection 
+  end  
   resources :end_users, only: [:edit, :update, :destroy ] 
   resources :cart_items, only: [:show, :update, :create, :destroy, :index]
+    delete "destruction", :to => "cart_items#destruction"
+ 
    devise_for :end_users, :controllers => {
     :registrations => 'end_users/registrations',
     :sessions => 'end_users/sessions'   
@@ -22,10 +26,12 @@ Rails.application.routes.draw do
   get 'end_users/:id', :to => 'end_users#show', as: :end_users_mypage
  namespace :admin do
    resources :order_details, only:[:update]
-   resources :items, only: [:index, :new, :create]
+   resources :items, only: [:index, :new, :create, :update, :edit]
    resources :genres, only: [:index, :create, :edit, :update]
    resources :orders, only: [:index, :show, :update]
    get "end_users", :to =>"end_users#index"
+   delete "end_user/:id", :to =>"end_users#destroy"
+
  end
  devise_for :admins, path: :admin, :controllers => {
    

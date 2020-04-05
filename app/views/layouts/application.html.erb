@@ -11,15 +11,18 @@
 
   <body>
    <header class = "navbar navbar-top navbar-inverse">
+
     <div class = "container">
+    <nav class= "navbar-left nabvar-nav nav">
+    <% if end_user_signed_in? %>
+      <li><a><%= current_end_user.name %></a></li>
+      <% end %>
+    </nav>
     <% if end_user_signed_in? %>
     <nav>
-     <ul class="nav navbar-nav navbar-right">
+     <ul class="navbar-right navbar-nav nav" data-hover="dropdown" data-animations="zoomIn fadeIn fadeInUp fadeIn">
      <li>
         <%= link_to " mypage", end_users_mypage_path(current_end_user.id) %>
-      </li>
-      <li> 
-        <%= link_to " all carts"  %>  
       </li>
       <li>
         <%= link_to " log out", sign_out_path %>
@@ -29,6 +32,11 @@
       </li>
        <li> 
         <%= link_to " カート内商品一覧", cart_items_path  %>  
+      </li>
+      <li> 
+      <a><%= form_tag(items_path, method: :get, enforce_utf8: false) do %>
+       <%= autocomplete_field_tag 'item[name]', nil,  autocomplete_item_name_items_path %>
+       <% end %></a>
       </li>
      </ul>
      </nav> 
@@ -41,6 +49,12 @@
       </li>
       <li> 
         <%= link_to "商品登録", new_admin_item_path  %>  
+      </li>
+      <li> 
+        <%= link_to "ユーザー一覧", admin_end_users_path  %>  
+      </li>
+      <li> 
+        <%= link_to "ジャンル一覧", admin_genres_path  %>  
       </li>
 
       <li>

@@ -1,7 +1,7 @@
 <div class="col-xs-5">
-<h1>商品登録</h1>
+<h1>商品編集</h1>
 
-<%= form_for(@item, url: admin_items_path) do |f| %>
+<%= form_for(@item, url: admin_item_path(@item)) do |f| %>
 	 	<div class="field row">
 	 	 <label>商品名</label>
 	 	 <%= f.text_field :name, class: "col-xs-12" %>
@@ -29,7 +29,7 @@
          
 
 	 	<div class="actions row">
-	 		<%= f.submit '商品登録', class: "col-xs-12 btn btn-primary"  %>
+	 		<%= f.submit '商品編集', class: "col-xs-12 btn btn-primary"  %>
 	 	</div>
 <% end %>     
 </div>    

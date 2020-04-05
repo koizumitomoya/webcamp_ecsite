@@ -1,4 +1,5 @@
 class OrdersController < ApplicationController
+    before_action :authenticate_end_user!
     def new
         @order = Order.new
         @carts = current_end_user.cart_items
@@ -37,6 +38,7 @@ class OrdersController < ApplicationController
     def index
     end
     def show
+
     end   
     
     private
