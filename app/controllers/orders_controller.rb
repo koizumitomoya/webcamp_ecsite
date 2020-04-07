@@ -23,7 +23,10 @@ class OrdersController < ApplicationController
              item = cart_item.item
              order_detail = OrderDetail.new(item_id: cart_item.item_id, order_id: order.id, amount: cart_item.amount, price: item.price * cart_item.amount, status: 0)
              order_detail.save
-           end
+            ??end
+            current_end_user.cart_items.each do |cart|
+            cart.destroy
+            end    
     
            redirect_to finsh_orders_path
         end

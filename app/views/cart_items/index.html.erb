@@ -1,29 +1,36 @@
 
- <% @carts.each do |cart| %>
+ <table class="table">
+  <thead>
+   <tr>
+    <th>ユーザー名</th>
+    <th>商品名</th>
+    <th>値段</th>
+    <th>商品数</th>
+    <th></th>
+    <th></th>
+    <th>小計</th>
+   <tr>
+  </thead>
+  <tbody>
+   <% @carts.each do |cart| %>
 
-         <p>ユーザー名</P><%= cart.end_user.name %><br>
-         <p>商品名</p><%= cart.item.name %><br>
-         <p>値段</p><%= cart.item.price %><br>
-         <p>商品数</p>
-         
-
+    <tr>
+     <td><%= cart.end_user.name %></td>
+     <td><%= cart.item.name %></td>
+     <td><%= cart.item.price %></td>
          <%= form_for(cart, url: cart_item_path(cart)) do |f| %>
-	 
-         <label>dddd</label>
-	 	<%= f.number_field :amount, class: "col-xs-12" %>
-	 	</div>
-       
-         
+     <td><%= f.number_field :amount, class: "col-xs-12" %></td>
+     <td><%= f.submit 'edit amount'%></td>
+ <% end %>   
+     <td><%= link_to "destroy", cart_item_path(@cart=cart), method: :delete %></td>
+     <td><%= cart.item.price*cart.amount %></td>
 
-	 	<div class="actions row">
-	 		<%= f.submit 'edit amount'%>
-	 	</div>
-         <%= link_to "destroy", cart_item_path(@cart=cart), method: :delete %>
-         
-         <p>小計</p><%= cart.item.price*cart.amount %>   
-<% end %>   
+     <tr>
+  </tbody>
+         <% end %>
+
+ </table>
         
-       <% end %>
          <%= link_to "カート内全削除", destruction_path, method: :delete %>
        <%= link_to "購入画面", new_order_path %> 
        <%= link_to "買い物を続ける", items_path %>

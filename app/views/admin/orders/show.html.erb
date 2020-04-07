@@ -11,6 +11,8 @@
     <tr>
    
   </thead>
+        <%= form_for(@order, url: admin_order_path(@order)) do |f| %>
+
   <tbody>
    
     <tr>
@@ -19,16 +21,16 @@
       <td><%= @order.address.address%></td>
 	  <td><%= @order.address.name%></td>		
       <td><%= @order.total %> </td>
-      <%= form_for(@order, url: admin_order_path(@order)) do |f| %>
 
 	  <td colspan="3"><%= f.select :status, Order.statuses.keys, :selected=>@order.status%></td>
       <td><%= f.submit '配送ステータス変更', class: "col-xs-12 btn btn-primary"  %></td>
     <tr>
-     <%end%>   
+       
    
 
 
   </tbody>
+   <%end%>
   
 </table>
 <table class="table">
@@ -43,8 +45,9 @@
     <tr>
    
   </thead>
-  <tbody>
   <% @order_details.each do |order| %>
+  <tbody>
+  
 
     <tr>
       <td><%= order.item.name %></td>
@@ -57,11 +60,12 @@
       <td><%= f.select :status, OrderDetail.statuses.keys, :selected=>order.status %></td>
       <td>	<%= f.submit '製作ステータス変更', class: "col-xs-12 btn btn-primary"  %></td>
     <tr>
-    <%end%>    
    
 
 
   </tbody>
+   <%end%>    
+   
   <% end %>
 </table>
 

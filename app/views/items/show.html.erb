@@ -1,15 +1,44 @@
-<h1>Items#show</h1>
-<p>Find me in app/vie
+<h1>商品詳細</h1>
 <%= form_for CartItem.new, url: cart_items_path(item_id: @item) do |f| %>
-	 <%= @item.name %>
-         <label>dd</label>
-	 	<%= f.number_field :amount, class: "col-xs-12" %>
-	 	</div>
-       
-         
 
-	 	<div class="actions row">
-	 		<%= f.submit 'add', class: "col-xs-12 btn btn-primary"  %>
-	 	</div>
-<% end %>         
+<table class="table">
+ 
+   <tr>
+    <th>商品名</th>
+    <td> <%= @item.name %></td>
+  </tr>
+   <tr>
+    <th>ジャンル名</th>
+    <td><%= @item.genre.name %></td>
+   </tr>
+   <tr>
+    <th>商品説明</th>
+    <td><%= @item.description %></td>
+   </tr>
+   <tr>
+    <th>商品画像</th>
+    <td><%= attachment_image_tag @item, :image, :fill, 60, 60, format: 'jpeg',  size: "50x50" %></td>
+   </tr>
+   <tr>
+    <th>ステータス</th>
+    <td><%= @item.status %></td>
+   </tr>
+   <tr>
+    <th>価格</th>
+    <td><%= @item.price %></td>
+   </tr>
+   <tr>
+    <th>数量</th>
+    <td><%= f.number_field :amount, class: "col-xs-12" %></td>
+   </tr>
+   <tr>
+    <th></th>
+    <td><%= f.submit 'カートに追加', class: "col-xs-12 btn btn-primary"  %></td>
+   </tr>
+  
+
+ </table>
+  <% end %> 
+	 
+       
 
