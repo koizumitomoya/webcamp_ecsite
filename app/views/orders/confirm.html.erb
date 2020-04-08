@@ -1,0 +1,48 @@
+ <table class="table">
+  <thead>
+   <tr>
+    <th>ユーザー名</th>
+    <th>商品名</th>
+    <th>値段</th>
+    <th>商品数</th>
+    <th>小計</th>
+   <tr>
+  </thead>
+  <tbody>
+   
+    <tr>
+     <% @carts.each do |cart| %>
+     <td><%= current_end_user.name %></td>
+    
+
+     <td><%= cart.item.name %></td>
+     <td><%= cart.item.price %>円</td>
+     <td><%= cart.amount %>個</td>
+     <td><%= up=cart.item.price*cart.amount %>円  </td>
+      <% @array << up %>
+
+
+     <tr>
+  </tbody>
+         <% end %>
+
+ </table>
+
+  <p>合計</p><p><%= @array.sum %>円</p>  
+    <p>配送先名前</p> <%= @order.address.name %>
+ <p>配送先住所</p> <%= @order.address.address %>
+    
+<%= form_for @order do |f| %>
+<%= f.hidden_field :address_id, value: @order.address_id %>
+<%= f.hidden_field :total, value: @array.sum  %>
+<%= f.hidden_field :method, value: @order.method %>
+
+
+  <div class="actions">
+    <%= link_to 'back', new_order_path %>
+  </div>
+  <div class="actions">
+    <%= f.submit '購入する' %>
+  </div>
+<% end %>
+
