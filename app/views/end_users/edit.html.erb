@@ -4,5 +4,19 @@
     <p>苗字</p><%= f.text_field :surname_kana %>
     <p>名前</p><%= f.text_field :name_kana %>
     <p>email</p><%= f.text_field :email %>
+     <div class="field">
+    <%= f.label :postcode %><br />
+    <%= f.text_field :postcode, autofocus: true, autocomplete: "postcode" %>
+  </div>
+  <div class="field">
+    <%= f.label :address %><br />
+    <%= f.text_field :address, autofocus: true, autocomplete: "address" %>
+  </div><div class="field">
+    <%= f.label :phone_number %><br />
+    <%= f.text_field :phone_number, autofocus: true, autocomplete: "phone_number" %>
+  </div>
     <%= f.submit "update", class:"btn btn-lg  btn-base-1 mt-20" %>
+     <tr>
+	<th colspan="3"><%= link_to "アカウント削除", end_user_path, data: { confirm: "退会させますか?" }, method: :delete %></th>
+	</tr>
 <% end %>

@@ -31,6 +31,7 @@ Rails.application.routes.draw do
    resources :orders, only: [:index, :show, :update]
    get "end_users", :to =>"end_users#index"
    delete "end_user/:id", :to =>"end_users#destroy"
+   get "", :to =>"end_users#top"
 
  end
  devise_for :admins, path: :admin, :controllers => {

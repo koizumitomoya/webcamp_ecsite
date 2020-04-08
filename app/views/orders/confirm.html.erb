@@ -35,6 +35,7 @@
 <%= form_for @order do |f| %>
 <%= f.hidden_field :address_id, value: @order.address_id %>
 <%= f.hidden_field :total, value: @array.sum  %>
+<%= f.hidden_field :method, value: @order.method %>
 
 
   <div class="actions">
