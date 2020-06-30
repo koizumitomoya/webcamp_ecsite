@@ -29,11 +29,15 @@
  </table>
 
   <p>合計</p><p><%= @array.sum %>円</p>  
-    <p>配送先名前</p> <%= @order.address.name %>
- <p>配送先住所</p> <%= @order.address.address %>
+    <p>配送先名前</p> <%= @order.delivery_name %>
+ <p>配送先住所</p> <%= @order.delivery_address %>
     
-<%= form_for @order do |f| %>
-<%= f.hidden_field :address_id, value: @order.address_id %>
+
+<%= form_with model: @order, url:orders_path, method: :post,local: true do |f| %>
+<%= f.hidden_field :address_id,value: @order.address_id %>
+<%= f.hidden_field :delivery_postcode,value: @order.delivery_postcode %>
+<%= f.hidden_field :delivery_name, value:@order.delivery_name %>
+<%= f.hidden_field :delivery_address, value:@order.delivery_address %>
 <%= f.hidden_field :total, value: @array.sum  %>
 <%= f.hidden_field :method, value: @order.method %>
 

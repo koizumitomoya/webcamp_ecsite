@@ -22,7 +22,11 @@
 					<% else %>
 					  <td>×</td>
                     <%end%> 
-                    <td><%= link_to "アカウント削除", admin_path(user.id), data: { confirm: "退会させますか?" }, method: :delete %></td>
+					<td>
+					<% if user.deleted_at == nil %>
+                    <%= link_to "アカウント削除", admin_path(user.id), data: { confirm: "退会させますか?" }, method: :delete %>
+					<%end%>
+					</td>
 
 	 			</tr>
 	 			<% end %> 

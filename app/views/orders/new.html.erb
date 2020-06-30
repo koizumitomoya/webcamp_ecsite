@@ -1,14 +1,19 @@
 <div class="">
 <div class="center-block" style="width:500px;">
-<%= form_for(@order, url:confirm_orders_path ) do |f| %>
+<%= form_with model: @order, url:confirm_orders_path, method: :post,local: true do |f| %>
 	 
          
             <label class="col-xs-12">支払方法</label>
             <label ><%= f.radio_button :method, "現金" %> 現金 </label>
 　　　　<label><%= f.radio_button :method, "カード" %> カード</label><br>
+         
 	 	 <label class="col-xs-12">登録済住所選択</label>
+		<div><%= f.radio_button :address_option,0%>#ご自身の住所<div>
+　　　　　<div><%= f.radio_button :address_option,1  %>#ご登録済み住所<br>
 	 	 <%= f.collection_select :address_id, current_end_user.addresses.all, :id, :address, class: "col-xs-12" %><br>
-          <%= link_to "配送先登録", new_address_path %> <br>
+		  </div>
+		<div><%= f.radio_button :address_option,2 %>#新規住所<div>
+         
        
          
 
