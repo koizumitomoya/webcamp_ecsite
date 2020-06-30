@@ -1,0 +1,35 @@
+<table class="table">
+  <thead>
+    <tr>
+    　　<th>購入者</th>
+    <th>購入日</th>
+      <th>配送先住所</th>
+	  <th>配送先名前</th>		
+      <th>合計</th>
+      <th>配送ステータス</th>
+	  <th colspan="3"></th>
+    <tr>
+   
+  </thead>
+  <tbody>
+    <% @orders.each do |order| %>
+    <tr>
+    　 <td><%= order.end_user.surname%><%= order.end_user.name%></td>
+     <td><%= order.created_at%></td>
+      <td><%= order.address.address%></td>
+	  <td><%= order.address.name%></td>		
+      <td><%= order.total %> 円</td>
+	  <td colspan="3"><%= order.status %></td>
+      <td><%= link_to "詳細", admin_order_path(order) %></td>
+    <tr>
+   
+
+
+  </tbody>
+  <% end %>
+</table>
+
+
+
+
+

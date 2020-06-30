@@ -1,46 +1,87 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>WebcampEcsite</title>
+   <title>WebcampEcsite</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    <meta charset="utf-8"/>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-   <header>
+   <header class = "navbar navbar-top navbar-inverse">
+
+    <div class = "container">
+    <nav class= "navbar-left nabvar-nav nav">
     <% if end_user_signed_in? %>
+      <li><a><%= current_end_user.name %></a></li>
+      <% end %>
+    </nav>
+    <% if end_user_signed_in? %>
+    <nav>
+     <ul class="navbar-right navbar-nav nav" data-hover="dropdown" data-animations="zoomIn fadeIn fadeInUp fadeIn">
      <li>
         <%= link_to " mypage", end_users_mypage_path(current_end_user.id) %>
-      </li>
-      <li> 
-        <%= link_to " all carts"  %>  
       </li>
       <li>
         <%= link_to " log out", sign_out_path %>
       </li>
-    <% elsif admin_signed_in? %>  
-       <li>
-        <%= link_to " 受注一覧" %>
+       <li> 
+        <%= link_to " 商品一覧", items_path  %>  
+      </li>
+       <li> 
+        <%= link_to " カート内商品一覧", cart_items_path  %>  
       </li>
       <li> 
-        <%= link_to "商品登録"  %>  
+      <a><%= form_tag(items_path, method: :get, enforce_utf8: false) do %>
+       <%= autocomplete_field_tag 'item[name]', nil,  autocomplete_item_name_items_path %>
+       <% end %></a>
       </li>
+     </ul>
+     </nav> 
+
+    <% elsif admin_signed_in? %>  
+    <nav>
+    <ul class="nav navbar-nav navbar-right">
+       <li>
+        <%= link_to " 受注一覧", admin_orders_path %>
+      </li>
+      <li> 
+        <%= link_to "商品登録", new_admin_item_path  %>  
+      </li>
+      <li> 
+        <%= link_to "ユーザー一覧", admin_end_users_path  %>  
+      </li>
+      <li> 
+        <%= link_to "ジャンル一覧", admin_genres_path  %>  
+      </li>
+
       <li>
         <%= link_to " log out", admin_sign_out_path %>
       </li>
+    <nav>
+    <ul>  
    
     <% else %>
+    <nav>
+    <ul class="nav navbar-nav navbar-right">
       <li class="">
-        <%= link_to "  Sign up", new_end_user_registration_path, class: "glyphicon glyphicon-edit" %>
+        <%= link_to "  Sign up", new_end_user_registration_path %>
       </li>
       <li class="">
-        <%= link_to "  Log in", new_end_user_session_path, class: "glyphicon glyphicon-check" %>
+        <%= link_to "  Log in", new_end_user_session_path %>
       </li>
+       <li> 
+        <%= link_to " 商品一覧", items_path  %>  
+      </li>
+      <ul>
+      <nav>
     <% end %>
-
+    
+    </ul>
+    </nav>
+     <div>
    </header>
     <%= yield %>
   </body>

@@ -1,0 +1,80 @@
+<table class="table">
+<thead>
+    <tr>
+     　<th>購入者</th>
+    <th>購入日</th>
+      <th>配送先住所</th>
+	  <th>配送先名前</th>		
+      <th>小計</th>
+      <th>配送ステータス</th>
+	  <th colspan="3"></th>
+    <tr>
+   
+  </thead>
+        <%= form_for(@order, url: admin_order_path(@order)) do |f| %>
+
+  <tbody>
+   
+    <tr>
+    <td><%= @order.end_user.surname%><%= @order.end_user.name%></td>
+     <td><%= @order.created_at%></td>
+      <td><%= @order.delivery_address%></td>
+	  <td><%= @order.delivery_name%></td>		
+      <td><%= @order.total %> </td>
+
+	  <td colspan="3"><%= f.select :status, Order.statuses.keys, :selected=>@order.status%></td>
+      <td><%= f.submit '配送ステータス変更', class: "col-xs-12 btn btn-primary"  %></td>
+    <tr>
+       
+   
+
+
+  </tbody>
+   <%end%>
+  
+</table>
+<table class="table">
+  <thead>
+    <tr>
+      <th>商品名前</th>
+	  <th>価格</th>		
+      <th>数量</th>
+      <th>小計</th>
+      <th>製作ステータス</th>
+	  <th colspan="3"></th>
+    <tr>
+   
+  </thead>
+  <% @order_details.each do |order| %>
+  <tbody>
+  
+
+    <tr>
+      <td><%= order.item.name %></td>
+	  <td><%= order.item.price%></td>		
+      <td><%=order.amount %></td>
+	  <td colspan="3"><%= order.price%></td>
+        <%= form_for(order,url: admin_order_detail_path(order)) do |f| %>
+
+
+      <td><%= f.select :status, OrderDetail.statuses.keys, :selected=>order.status %></td>
+      <td>	<%= f.submit '製作ステータス変更', class: "col-xs-12 btn btn-primary"  %></td>
+    <tr>
+   
+
+
+  </tbody>
+   <%end%>    
+   
+  <% end %>
+</table>
+
+
+
+ 
+        
+
+	 	
+	
+      
+

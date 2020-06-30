@@ -32,4 +32,5 @@ end
 def after_sign_out_path_for(resource)
   admin_sign_in_path
 end 
+
 end

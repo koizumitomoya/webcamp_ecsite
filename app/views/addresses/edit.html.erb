@@ -1,0 +1,17 @@
+<%= form_for(@address, url: address_path(@address.id)) do |f| %>
+	 
+         <label>postcode</label>
+	 	<%= f.text_field :postcode, class: "col-xs-12" %>
+	 	</div><br>
+         <label>address</label>
+	 	<%= f.text_field :address, class: "col-xs-12" %>
+	 	</div><br>
+           <label>届け先名前</label>
+	 	<%= f.text_field :name, class: "col-xs-12" %>
+	 	
+         
+
+	 	<div class="actions row">
+	 		<%= f.submit '配送先編集', class: "col-xs-12 btn btn-primary"  %>
+	 	</div>
+<%end%> 
